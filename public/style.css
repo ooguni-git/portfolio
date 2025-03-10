@@ -1,0 +1,48 @@
+
+/*CSS*/
+
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    margin: 0 auto;
+    max-width: 600px; /* 中央揃えと幅制限 */
+}
+
+input {
+    padding: 5px;
+    margin: 10px;
+    width: calc(100% - 24px); /* 入力フィールドの幅調整 */
+}
+
+button {
+    padding: 5px 10px;
+    margin: 5px;
+    cursor: pointer;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+li {
+    display: flex;
+    align-items: center; /* 垂直方向の中央揃え */
+    justify-content: space-between;
+    margin-left: 30px;
+    padding-left:30px;
+    margin: 5px 0;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    background-color: #f9f9f9;
+    word-wrap: break-word; /* 長いメモの改行 */
+}
+
+li span {
+    margin-right: 10px; /* メモの先頭部分に余白を追加 */
+}
+
+li button {
+    margin-left: 10px; /* ボタンとタスクの間にスペースを追加 */
+}

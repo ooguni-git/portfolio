@@ -1,0 +1,42 @@
+
+#ruby sinatra
+
+require 'sinatra'
+require 'sinatra/json'
+require 'sqlite3'
+require 'json'
+
+
+
+# SQLiteデータベースのセットアップ
+DB = SQLite3::Database.new "database.db"
+DB.execute <<-SQL
+  CREATE TABLE IF NOT EXISTS todos (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    task TEXT NOT NULL
+  );
+SQL
+
+# ToDo一覧を取得（GETリクエスト）
+get '/todos' do
+  todos = DB.execute("SELECT * FROM todos")
+  json todos.map { |id, task| { id: id, task: task } }
+end
+
+# ToDoを追加（POSTリクエスト）
+post '/todos' do
+  data = JSON.parse(request.body.read)
+  DB.execute("INSERT INTO todos (task) VALUES (?)", [data["task"]])
+  json success: true
+end
+
+# ToDoを削除（DELETEリクエスト）
+delete '/todos/:id' do
+  DB.execute("DELETE FROM todos WHERE id = ?", [params[:id].to_i])
+  json success: true
+end
+
+# フロントエンドのHTMLを提供
+get '/' do
+  send_file 'public/index.html'
+end
