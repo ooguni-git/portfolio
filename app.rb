@@ -21,9 +21,9 @@ if new_db
       task TEXT NOT NULL
     );
   SQL
-  puts "✅ 新しいデータベースを作成しました: #{DB_PATH}"
+  puts "新しいデータベースを作成しました: #{DB_PATH}"
 else
-  puts "✅ 既存のデータベースを使用します: #{DB_PATH}"
+  puts "既存のデータベースを使用します: #{DB_PATH}"
 end
 
 # ToDo一覧を取得
